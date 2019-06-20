@@ -17,37 +17,28 @@ function reducer(state = initialState, action) {
                 }
                 , ...state]
         case REMOVE_COMMENT:
-            return comments: state.comments.filter(comment => comment.id !== action.id)
+            return 
+            {
+                state.comments.filter(comment => comment.id !== action.id);
+            }    
         case EDIT_COMMENT:
-            //znajdz komentarz ktorego id == action.id
-            // map metoda + if id == action.id
-            //text = action.text lub votes +=1
-            return Object.assign({}, state, {
-                comments: [
-                    {
-                        id: action.id,
-                        text: action.text
-                    }
-                ]
-            });
+            return 
+            {
+                state.comments.map(comment => comment.id == action.id),
+                state.text = action.text
+            }
         case THUMB_UP_COMMENT:
-            return Object.assign({}, state, {
-                comments: [
-                    {
-                        id: action.id,
-                        votes: votes + 1
-                    }
-                ]
-            });
+            return 
+            {
+                state.comments.map(comment => comment.id == action.id),
+                state.votes + 1
+            }        
         case THUMB_DOWN_COMMENT:
-            return Object.assign({}, state, {
-                comments: [
-                    {
-                        id: action.id,
-                        votes: votes - 1
-                    }
-                ]
-            });
+            return
+            {
+                state.comments.map(comment => comment.id == action.id),
+                state.votes - 1
+            }
         default:
             return state;
     }
