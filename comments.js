@@ -25,10 +25,10 @@ function reducer(state = initialState, action) {
             return 
                 {
                     state.map(comment => {
-                        if(comment.id !== action.id) {
-                            return comment
-                        } return {
-                            ...comment, text: !comment.text 
+                        if(comment.id === action.id) {
+                            return {
+                            ...comment, text: comment.text 
+                            }
                         };
 
                     });
@@ -37,18 +37,24 @@ function reducer(state = initialState, action) {
             return 
             {
                 state.map(comment => {
-                    if(comment.id === action.id)
-                        state.vote + 1
-                })
+                    if(comment.id === action.id) {
+                        return {
+                        ...state, votes: state.votes + 1
+                        }
+                    }       
+                });
             }        
         case THUMB_DOWN_COMMENT:
             return
             {
                 state.map(comment => {
-                    if(comment.id === action.id)
-                        state.vote - 1
-                })
-            }
+                    if(comment.id === action.id) {
+                        return {
+                        ...state, votes: state.votes - 1
+                        }
+                    }       
+                });
+            }  
         default:
             return state;
     }
