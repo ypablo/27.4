@@ -19,25 +19,35 @@ function reducer(state = initialState, action) {
         case REMOVE_COMMENT:
             return 
             {
-                state.comments.filter(comment => comment.id !== action.id);
+                state.filter(comment => comment.id !== action.id);
             }    
         case EDIT_COMMENT:
             return 
-            {
-                state.comments.map(comment => comment.id == action.id),
-                state.text = action.text
-            }
+                {
+                    state.map(comment => {
+                        if(comment.id !== action.id) {
+                            return comment
+                        } return {
+                            ...comment, text: !comment.text 
+                        };
+
+                    });
+                }           
         case THUMB_UP_COMMENT:
             return 
             {
-                state.comments.map(comment => comment.id == action.id),
-                state.votes + 1
+                state.map(comment => {
+                    if(comment.id === action.id)
+                        state.vote + 1
+                })
             }        
         case THUMB_DOWN_COMMENT:
             return
             {
-                state.comments.map(comment => comment.id == action.id),
-                state.votes - 1
+                state.map(comment => {
+                    if(comment.id === action.id)
+                        state.vote - 1
+                })
             }
         default:
             return state;
