@@ -22,7 +22,7 @@ function reducer(state = initialState, action) {
             return 
                 state.map(comment => {
                     if(comment.id === action.id) {
-                        text: comment.text 
+                        state.text = action.text; 
                         }
                     return comment;    
                 });          
@@ -30,7 +30,7 @@ function reducer(state = initialState, action) {
             return 
                 state.map(comment => {
                     if(comment.id === action.id) {
-                        votes: state.votes + 1
+                        state.votes + 1;
                         }
                     return comment;    
                 });       
@@ -38,7 +38,7 @@ function reducer(state = initialState, action) {
             return
                 state.map(comment => {
                     if(comment.id === action.id) {
-                        votes: state.votes - 1
+                        state.votes - 1;
                         } 
                     return comment;         
                 });  
